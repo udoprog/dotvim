@@ -34,3 +34,12 @@
 [submodule "bundle/vim-fugutive"]
 	path = bundle/vim-fugutive
 	url = git://github.com/tpope/vim-fugitive.git
+[submodule "bundle/pyflakes"]
+	path = bundle/pyflakes
+	url = https://github.com/kevinw/pyflakes-vim.git
+[submodule "bundle/vim-puppet"]
+	path = bundle/vim-puppet
+	url = git://github.com/rodjek/vim-puppet.git
+[submodule "bundle/syntastic"]
+	path = bundle/syntastic
+	url = git://github.com/scrooloose/syntastic.git

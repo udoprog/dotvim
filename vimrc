@@ -20,6 +20,7 @@ set number
 set guifont=Monospace\ 8
 
 map <F2> :NERDTreeToggle<CR>
+let NERDTreeIgnore=['\.o$', '\.pyc$', '\~$']
 
 " tab navigation like firefox
 nmap <C-h> :tabp<CR>
@@ -65,6 +66,7 @@ set ttyfast
 set ruler
 set backspace=indent,eol,start
 set laststatus=2
+set modeline
 
 
 "
