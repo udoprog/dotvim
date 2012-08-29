@@ -103,6 +103,11 @@ if v:version >= 703
   set relativenumber
 endif
 
+"
+" Add fugitive statusline if available.
+"
+set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
+
 function! SetupJava()
   set path=src/main/java,src/test/java,$JAVA_HOME/src
   set suffixesadd=.java
