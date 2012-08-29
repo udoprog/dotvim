@@ -136,4 +136,6 @@ endif
 "
 " orgmode settings
 "
-let g:org_agenda_files=['~/.vim/org/index.org']
+let g:org_agenda_files = ['~/.vim/org/index.org']
+let g:pymode_rope = 1
+let g:pymode_folding = 1
