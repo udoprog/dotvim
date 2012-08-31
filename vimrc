@@ -90,7 +90,7 @@ vnoremap <tab> %
 set wrap
 set textwidth=79
 set formatoptions=qrn1
-set colorcolumn=85
+set colorcolumn=80
 set wildignore+=**/.svn
 set wildignore+=*.class
 set wildignore+=**/tmp
@@ -106,7 +106,7 @@ endif
 "
 " Add fugitive statusline if available.
 "
-set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
+"set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
 
 function! SetupJava()
   set path=src/main/java,src/test/java,$JAVA_HOME/src
@@ -124,12 +124,19 @@ function! SetupPython()
   set suffixesadd=.py
 endfunction
 
+function! SetupRuby()
+  set tabstop=2
+  set shiftwidth=2
+  set suffixesadd=.rb
+endfunction
+
 if has("autocmd")
   " do all autocmd stuff here
   " autocmd FileType javascript <cmd>
   autocmd BufNewFile,BufRead *.java :call SetupJava()
   autocmd BufNewFile,BufRead *.py :call SetupPython()
   autocmd BufNewFile,BufRead *.php :call SetupPHP()
+  autocmd BufNewFile,BufRead *.rb :call SetupRuby()
   autocmd! BufNewFile * silent! 0r ~/.vim/skel/tmpl.%:e
 endif
 
