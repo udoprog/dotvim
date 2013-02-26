@@ -1,88 +1,78 @@
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
-
-syntax enable
-
+execute pathogen#infect()
+syntax on
 filetype plugin on
 filetype indent on
 
 colorscheme desert
-
-set list
-set listchars=tab:▸\ ,eol:¬
-set showbreak=…
 
 set sw=4
 set tabstop=4
 set expandtab
 set number
 
-set guifont=Monospace\ 8
+set guifont=Inconsolata\ for\ Powerline
 
-map <F2> :NERDTreeToggle<CR>
-let NERDTreeIgnore=['\.o$', '\.pyc$', '\~$']
+set modelines=5
+set novisualbell
+set t_vb=
+set updatetime=1000
+set nonumber
 
-" tab navigation like firefox
-nmap <C-h> :tabp<CR>
-nmap <C-l> :tabn<CR>
-
-noremap <Left>  <NOP>
-inoremap <Left>  <NOP>
-noremap <Right> <NOP>
-inoremap <Right> <NOP>
-noremap <Up>    <NOP>
-inoremap <Up>    <NOP>
-noremap <Down>  <NOP>
-inoremap <Down>  <NOP>
-
-" :inoremap <Esc>   <NOP>
-" :inoremap kj <Esc>
-
-"
-" Custom Highlights
-"
-highlight NonText guifg=#909090
-highlight SpecialKey guifg=#909090
-
-let g:ackprg="ack-grep -H --nocolor --nogroup --column"
-
-let mapleader = ","
-let maplocalleader = '\'
+set laststatus=2
+set history=1000
 
 "
 " Set some default stuff that allows for better integration
 "
-set encoding=utf-8
-set scrolloff=3
 set autoindent
-set showmode
-set showcmd
+set autoread
+set autowrite
+set backspace=indent,eol,start
+set cursorline
+set dictionary=/usr/share/dict/words
+set encoding=utf-8
+set fillchars=diff:⣿,vert:│
+set gdefault
 set hidden
+set hlsearch
+set ignorecase
+set incsearch
+set laststatus=2
+set lazyredraw
+set linebreak
+set list
+set listchars=tab:▸\ ,trail:¬,extends:❯,precedes:❮
+set matchtime=3
+set modeline
+set ruler
+set scrolloff=3
+set shiftround
+set showbreak=↪
+set showcmd
+set showmatch
+set showmode
+set smartcase
+set spellfile=~/.vim/custom-dictionary.utf-8.add
+set splitbelow
+set splitright
+set title
+set ttyfast
+set visualbell
 set wildmenu
 set wildmode=list:longest
-set visualbell
-set cursorline
-set ttyfast
-set ruler
-set backspace=indent,eol,start
-set laststatus=2
-set modeline
+" Don't try to highlight lines longer than 800 characters.
+set synmaxcol=800
+" Time out on key codes but not mappings
+set notimeout
+set ttimeout
+set ttimeoutlen=10
 
+" Make Vim able to edit crontab files again.
+set backupskip=/tmp/*,/private/tmp/*"
 
-"
-" Improve search
-"
-nnoremap / /\v
-vnoremap / /\v
-set ignorecase
-set smartcase
-set gdefault
-set incsearch
-set showmatch
-set hlsearch
-nnoremap <leader><space> :noh<CR>
-nnoremap <tab> %
-vnoremap <tab> %
+" Better Completion
+set complete=.,w,b,u,t
+set completeopt=longest,menuone,preview
 
 "
 "Make line wrapping act sanely
@@ -91,22 +81,31 @@ set wrap
 set textwidth=79
 set formatoptions=qrn1
 set colorcolumn=80
+
 set wildignore+=**/.svn
 set wildignore+=*.class
 set wildignore+=**/tmp
 
-"
-" Features only exists in 7.3
-"
-if v:version >= 703
+if exists('+colorcolumn')
+  set colorcolumn=+1
+endif
+
+if exists('+undofile')
   set undofile
-  set relativenumber
+  set undoreload=10000
+endif
+
+if exists('+relativenumber')
+  set norelativenumber
 endif
 
 "
-" Add fugitive statusline if available.
+" PLUGINS
 "
-"set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
+
+" Add fugitive statusline if available.
+set statusline+=%{fugitive#statusline()}
+let g:Powerline_symbols = 'fancy'
 
 function! SetupJava()
   set path=src/main/java,src/test/java,$JAVA_HOME/src
@@ -138,11 +137,80 @@ if has("autocmd")
   autocmd BufNewFile,BufRead *.php :call SetupPHP()
   autocmd BufNewFile,BufRead *.rb :call SetupRuby()
   autocmd! BufNewFile * silent! 0r ~/.vim/skel/tmpl.%:e
+  autocmd BufNewFile,BufRead *.pp set filetype=puppet
 endif
+
+" Save when losing focus
+au FocusLost * :silent! wall
+
+" Resize splits when the window is resized
+au VimResized * :wincmd =
+
+map <F2> :NERDTreeToggle<CR>
+let NERDTreeIgnore=['\.o$', '\.pyc$', '\~$']
+
+" tab navigation like firefox
+nmap <C-h> :tabp<CR>
+nmap <C-l> :tabn<CR>
+
+noremap <Left>  <NOP>
+inoremap <Left>  <NOP>
+noremap <Right> <NOP>
+inoremap <Right> <NOP>
+noremap <Up>    <NOP>
+inoremap <Up>    <NOP>
+noremap <Down>  <NOP>
+inoremap <Down>  <NOP>
+
+" :inoremap <Esc>   <NOP>
+" :inoremap kj <Esc>
+
+"
+" Custom Highlights
+"
+highlight NonText guifg=#909090
+highlight SpecialKey guifg=#909090
+
+let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+
+let mapleader = ","
+let maplocalleader = '\'
+
+
+"
+" Improve search
+"
+nnoremap / /\v
+vnoremap / /\v
+nnoremap <leader><space> :noh<CR>
+nnoremap <tab> %
+vnoremap <tab> %
 
 "
 " orgmode settings
 "
-let g:org_agenda_files = ['~/.vim/org/index.org']
-let g:pymode_rope = 1
-let g:pymode_folding = 1
+if exists("g:loaded_org")
+  let g:org_agenda_files = ['~/.vim/org/index.org']
+  let g:pymode_rope = 1
+  let g:pymode_folding = 1
+endif
+
+"
+" Highlight extra whitespace.
+"
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+
+"
+" Syntastic
+"
+
+if exists("g:loaded_syntastic_plugin")
+  let g:syntastic_enable_signs = 1
+  let g:syntastic_check_on_open = 0
+  let g:syntastic_disabled_filetypes = ['html', 'rst', 'css']
+  let g:syntastic_stl_format = '[%E{%e Errors}%B{, }%W{%w Warnings}]'
+  let g:syntastic_javascript_jslint_conf = "--maxerr 1000 --white --undef --nomen --regexp --plusplus --bitwise --newcap --sloppy --vars --continue"
+  let g:syntastic_python_checker = 'flake8'
+  let g:syntastic_python_checker_args = '--ignore=E501'  " Ignore line too long
+endif
