@@ -16,7 +16,6 @@ set modelines=5
 set novisualbell
 set t_vb=
 set updatetime=1000
-set nonumber
 
 set laststatus=2
 set history=1000
@@ -57,7 +56,6 @@ set splitbelow
 set splitright
 set title
 set ttyfast
-set visualbell
 set wildmenu
 set wildmode=list:longest
 " Don't try to highlight lines longer than 800 characters.
@@ -96,7 +94,9 @@ if exists('+undofile')
 endif
 
 if exists('+relativenumber')
-  set norelativenumber
+  set relativenumber
+else
+  set number
 endif
 
 "
@@ -104,7 +104,10 @@ endif
 "
 
 " Add fugitive statusline if available.
-set statusline+=%{fugitive#statusline()}
+" set statusline+=%{fugitive#statusline()}
+
+" let g:Powerline_coloscheme = 'badwolf'
+let g:Powerline_cache_enabled = 0
 let g:Powerline_symbols = 'fancy'
 
 function! SetupJava()
