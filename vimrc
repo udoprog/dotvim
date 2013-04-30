@@ -4,6 +4,7 @@ filetype plugin on
 filetype indent on
 
 colorscheme desert
+set t_Co=256
 
 set sw=4
 set tabstop=4
