@@ -52,9 +52,6 @@
 [submodule "pathogen"]
 	path = pathogen
 	url = https://github.com/tpope/vim-pathogen
-[submodule "bundle/vim-powerline"]
-	path = bundle/vim-powerline
-	url = https://github.com/Lokaltog/vim-powerline
-[submodule "bundle/powerline"]
-	path = bundle/powerline
+[submodule "powerline"]
+	path = powerline
 	url = https://github.com/Lokaltog/powerline.git

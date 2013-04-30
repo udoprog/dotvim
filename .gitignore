@@ -1,2 +1,4 @@
 .*.un~
 .*.swp
+# contains local modifications
+bundle/powerline
