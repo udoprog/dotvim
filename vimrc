@@ -133,6 +133,10 @@ function! SetupRuby()
   set suffixesadd=.rb
 endfunction
 
+function! SetupEPL()
+  set filetype=sql
+endfunction
+
 if has("autocmd")
   " do all autocmd stuff here
   " autocmd FileType javascript <cmd>
@@ -140,6 +144,7 @@ if has("autocmd")
   autocmd BufNewFile,BufRead *.py :call SetupPython()
   autocmd BufNewFile,BufRead *.php :call SetupPHP()
   autocmd BufNewFile,BufRead *.rb :call SetupRuby()
+  autocmd BufNewFile,BufRead *.epl :call SetupEPL()
   autocmd! BufNewFile * silent! 0r ~/.vim/skel/tmpl.%:e
   autocmd BufNewFile,BufRead *.pp set filetype=puppet
 endif
