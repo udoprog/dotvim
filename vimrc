@@ -225,6 +225,11 @@ if exists("g:loaded_syntastic_plugin")
 endif
 
 "
+" Custom mappings
+"
+nnoremap <leader>t :CommandT<cr>
+
+"
 " Enable rainbow parameters.
 "
 au VimEnter * RainbowParenthesesToggle
