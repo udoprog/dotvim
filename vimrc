@@ -223,3 +223,12 @@ if exists("g:loaded_syntastic_plugin")
   let g:syntastic_python_checker = 'flake8'
   let g:syntastic_python_checker_args = '--ignore=E501'  " Ignore line too long
 endif
+
+"
+" Enable rainbow parameters.
+"
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+

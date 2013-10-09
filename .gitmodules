@@ -52,3 +52,18 @@
 [submodule "pathogen"]
 	path = pathogen
 	url = https://github.com/tpope/vim-pathogen
+[submodule "bundle/YouCompleteMe"]
+	path = bundle/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe
+[submodule "bundle/rainbow_parentheses.vim"]
+	path = bundle/rainbow_parentheses.vim
+	url = https://github.com/kien/rainbow_parentheses.vim
+[submodule "bundle/vim-clojure-static"]
+	path = bundle/vim-clojure-static
+	url = https://github.com/guns/vim-clojure-static
+[submodule "bundle/vim-fireplace"]
+	path = bundle/vim-fireplace
+	url = https://github.com/tpope/vim-fireplace
+[submodule "bundle/vim-classpath"]
+	path = bundle/vim-classpath
+	url = https://github.com/tpope/vim-classpath
