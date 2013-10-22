@@ -140,12 +140,12 @@ endfunction
 if has("autocmd")
   " do all autocmd stuff here
   " autocmd FileType javascript <cmd>
+  autocmd BufNewFile * silent! 0r ~/.vim/skel/tmpl.%:e
   autocmd BufNewFile,BufRead *.java :call SetupJava()
   autocmd BufNewFile,BufRead *.py :call SetupPython()
   autocmd BufNewFile,BufRead *.php :call SetupPHP()
   autocmd BufNewFile,BufRead *.rb :call SetupRuby()
   autocmd BufNewFile,BufRead *.epl :call SetupEPL()
-  autocmd! BufNewFile * silent! 0r ~/.vim/skel/tmpl.%:e
   autocmd BufNewFile,BufRead *.pp set filetype=puppet
 endif
 
@@ -228,6 +228,7 @@ endif
 " Custom mappings
 "
 nnoremap <leader>t :CommandT<cr>
+nnoremap <leader>r :NERDTreeFind<cr>
 
 "
 " Enable rainbow parameters.
