@@ -3,7 +3,7 @@ syntax on
 filetype plugin on
 filetype indent on
 
-colorscheme desert
+colorscheme lucius
 set t_Co=256
 
 set sw=4
