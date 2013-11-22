@@ -1,24 +1,16 @@
-all: $(HOME)/.vim $(HOME)/.vimrc submodules
+all:
+	make vim
+	git submodule update --init --recursive
+	make -f YouCompleteMe.mk all
+	make -f command-t.mk all
 
-.PHONY: submodules
+clean:
+	git submodule foreach --recursive git clean -fdx
+	git submodule foreach --recursive git reset --hard HEAD
 
-submodules: YouCompleteMe command-t
-	git submodule init
-	git submodule update
+.PHONY: vim
 
-.PHONY: YouCompleteMe
-
-YouCompleteMe: bundle/YouCompleteMe/python/ycm_core.so
-
-bundle/YouCompleteMe/python/ycm_core.so:
-	cd bundle/YouCompleteMe && ./install.sh
-
-.PHONY: command-t
-
-command-t: bundle/command-t/ruby/command-t/ext.so
-
-bundle/command-t/ruby/command-t/ext.so:
-	cd bundle/command-t/ruby/command-t && (ruby extconf.rb && make)
+vim: $(HOME)/.vim $(HOME)/.vimrc
 
 ${HOME}/.vimrc: $(PWD)/vimrc
 	ln -sf $< $@
